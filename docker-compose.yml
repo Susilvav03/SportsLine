@@ -1,0 +1,58 @@
+version: '3.9'
+
+networks:
+  sportsline_net:
+    driver: bridge
+
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sportsline
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: s7cq453mt2jnicTaQXKT
+    volumes:
+      - db_data:/var/lib/postgresql/data:rw
+    networks:
+      - sportsline_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_HOST=168.119.183.3
+      - DB_PORT=5432
+      - DB_USER=root
+      - DB_PASSWORD=s7cq453mt2jnicTaQXKT
+      - DB_NAME=sportsline
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/usr/src/app:ro
+    networks:
+      - sportsline_net
+    deploy: # useful for swarm or docs
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    restart: on-failure
+
+volumes:
+  db_data:
+    name: sportsline_db_data
