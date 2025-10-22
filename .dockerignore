@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.vscode
+.git
+npm-debug.log
+pnpm-debug.log
+Dockerfile
+docker-compose.yml
+**/*.ts
