@@ -22,9 +22,8 @@ type AuthWithTokenResult = {
     token: string
 }
 
-/**
- * Create a new user and return a safe user object (without password_hash)
- */
+
+// Create a new user and return a safe user object
 const createUser = async ({ name, email, password, role }: CreateUserInput): Promise<AuthResult> => {
     const exists = await User.findOne({ where: { email } })
     if (exists) {
@@ -44,9 +43,7 @@ const createUser = async ({ name, email, password, role }: CreateUserInput): Pro
     return { user: safeUser }
 }
 
-/**
- * Authenticate user credentials and return user + token
- */
+// Authenticate user credentials 
 const authenticateUser = async (email: string, password: string): Promise<AuthWithTokenResult> => {
     const user = await User.findOne({
         where: { email },
