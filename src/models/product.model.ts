@@ -10,6 +10,7 @@ export class Product extends Model<
     declare name: string
     declare description?: string | null
     declare unit_price: number
+    declare stock: number
     declare is_deleted?: CreationOptional<boolean>
     declare created_at?: CreationOptional<Date>
     declare updated_at?: CreationOptional<Date>
@@ -48,6 +49,12 @@ Product.init(
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
+        },
+        stock: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        validate: { min: 0 },
         },
         updated_at: {
         type: DataTypes.DATE,
