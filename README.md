@@ -1,8 +1,6 @@
-# SportsLine – REST API (TypeScript + Express + Sequelize + Postgres)
+# SportsLine
 
 SportsLine is a simple sales/orders API with JWT authentication, built on **TypeScript**, **Express**, **Sequelize** (PostgreSQL), **Zod** validation, and **JWT** for auth.
-
-> **Heads-up**: In the current code, **all `/api` routes are protected by `requireAuth`**, and your `auth` routes are mounted **inside** `/api`. That means `/api/auth/register` and `/api/auth/login` will also require a token. If you want to allow public auth, expose `/auth` before applying the `requireAuth` middleware (see note in _Auth_ section).
 
 ---
 
