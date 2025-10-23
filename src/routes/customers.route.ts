@@ -2,6 +2,7 @@ import { Router } from "express"
 import { validateBody } from "../middlewares/validate.middleware.ts"
 import { ensureUniqueCustomer } from "../middlewares/unique-document.middleware.ts";
 import { CustomerSchema, CustomerUpdateSchema } from "../schemas/customer.schema.ts";
+import authorize from "../middlewares/authorize.middleware.ts";
 import { 
     createCustomerController, 
     getAllCustomersController, 

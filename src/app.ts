@@ -1,7 +1,6 @@
 import express from "express"
 import "dotenv/config"
 import { initSequelize } from "./config/database.ts"
-import { requireAuth } from "./middlewares/auth.middleware.ts";
 import router from "./routes/main.routes.ts"
 
 
@@ -16,7 +15,7 @@ app.get("/health", (req, res) => {
 });
 
 // Routes
-app.use('/api', requireAuth, router);
+app.use('/api', router);
 
 // // Swagger
 // setupSwagger(app);
