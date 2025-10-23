@@ -1,7 +1,9 @@
 import { Router } from "express"
 import { register, login } from "../controllers/auth.controller.ts"
 import { validateBody } from "../middlewares/validate.middleware.ts"
-import { UserRegisterSchema, UserLoginSchema } from "../schemas/user.schema.ts"
+import { 
+    UserRegisterSchema, 
+    UserLoginSchema } from "../schemas/user.schema.ts"
 
 const router: Router = Router()
 

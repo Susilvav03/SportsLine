@@ -5,13 +5,14 @@ export class Product extends Model<
     InferAttributes<Product>,
     InferCreationAttributes<Product>
 > {
-    declare id: CreationOptional<number>
+    declare id?: CreationOptional<number>
+    declare code: string
     declare name: string
     declare description?: string | null
     declare unit_price: number
-    declare is_deleted: CreationOptional<boolean>
-    declare created_at: CreationOptional<Date>
-    declare updated_at: CreationOptional<Date>
+    declare is_deleted?: CreationOptional<boolean>
+    declare created_at?: CreationOptional<Date>
+    declare updated_at?: CreationOptional<Date>
 }
 
 Product.init(
@@ -20,6 +21,10 @@ Product.init(
         type: DataTypes.BIGINT,
         autoIncrement: true,
         primaryKey: true,
+        },
+        code: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
         },
         name: {
         type: DataTypes.STRING(200),
